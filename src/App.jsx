@@ -1,16 +1,20 @@
-import { useState } from 'react'
-
-import './App.css'
+import { useState } from 'react';
+// import Button from './components/Button'; 
+import './App.css';
+// import Teacherlayout from './components/TeacherLayout';
+import StudentLayout from './components/StudentLayout'; 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-
-      <Teacherlayout/>
+      <div>
+        {/* <Button /> */}
+      </div>
+      <StudentLayout/>
+      {/* TeacherLayout component is called here */}
+      {/* <Teacherlayout /> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
