@@ -41,12 +41,3 @@
   color: #888;
 }
 
-/* StudentDashboard.css */
-.toggle-box {
-  display: none; /* Hidden by default */
-  transition: all 0.3s ease;
-}
-
-.toggle-box.visible {
-  display: block; /* Show when class is added */
-}
