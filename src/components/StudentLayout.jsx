@@ -1,101 +1,165 @@
-
-import React, { useState } from "react";
-
-import { Layout, Button, Typography, Drawer, Card, Row, Col, Progress } from "antd";
+import React, { useState, useRef } from "react";
 import {
+  Layout,
+  Menu,
+  Card,
+  Row,
+  Col,
+  Button,
+  Table,
+  Typography,
+  Progress,
+  Drawer,
+} from "antd";
+import {
+  MenuOutlined,
+  PieChartOutlined,
   FileTextOutlined,
-  BellOutlined,
-  BarChartOutlined,
   TeamOutlined,
   CalendarOutlined,
-  MenuOutlined,
-  CloseOutlined,
+  BellOutlined,
 } from "@ant-design/icons";
 
-const { Header, Content } = Layout;
+const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
-const StudentLayout = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+const StudentPortal = () => {
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const menuRef = useRef(null);
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+  // Handle screen size changes
+  const updateScreenSize = () => {
+    setIsMobile(window.innerWidth < 768); // Mobile breakpoint
   };
 
+  React.useEffect(() => {
+    updateScreenSize(); // Check initial size
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
+  }, []);
+
+  // Toggle Drawer
+  const toggleDrawer = () => {
+    setDrawerVisible(!drawerVisible);
+  };
+
+  // Render Sidebar Menu
+  const renderMenu = (
+    <Menu
+      ref={menuRef}
+      theme="dark"
+      mode="inline"
+      defaultSelectedKeys={["1"]}
+      items={[
+        { key: "1", icon: <PieChartOutlined />, label: "Dashboard" },
+        { key: "2", icon: <TeamOutlined />, label: "Courses" },
+        { key: "3", icon: <FileTextOutlined />, label: "Assignments" },
+        { key: "4", icon: <CalendarOutlined />, label: "Schedule" },
+        { key: "5", icon: <BellOutlined />, label: "Notifications" },
+      ]}
+    />
+  );
+
   return (
-    <Layout className="min-h-screen">
-      <Header className="flex justify-between items-center bg-blue-500 p-4">
-        <Button
-          type="primary"
-          icon={drawerOpen ? <CloseOutlined /> : <MenuOutlined />}
-          onClick={toggleDrawer}
-          className={`p-2 ${drawerOpen ? 'bg-blue-500' : 'bg-blue-500'}`}
-        >
-          {drawerOpen ? 'Close' : 'Menu'}
-        </Button>
-      </Header>
-      <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
+      {/* Sidebar for Desktop */}
+      {!isMobile && (
+        <Sider collapsible={false} theme="dark">
+          <div style={{ color: "white", padding: "20px", textAlign: "center" }}>
+            <Title level={4} style={{ color: "white" }}>
+              Student Portal
+            </Title>
+          </div>
+          {renderMenu}
+        </Sider>
+      )}
+
+      {/* Drawer for Mobile */}
+      {isMobile && (
         <Drawer
           title="Menu"
           placement="left"
-          open={drawerOpen}
+          closable
           onClose={toggleDrawer}
-          className="bg-sky-200"
+          visible={drawerVisible}
+          open={drawerVisible}
         >
-          <Button type="link" icon={<FileTextOutlined />} className="text-blue-500">
-           Timetable
-          </Button>
-          <Button type="link" icon={<BellOutlined />} className="text-blue-500">
-            Notifications
-          </Button>
-          <Button type="link" icon={<BarChartOutlined />} className="text-blue-500">
-            Results
-          </Button>
-          <Button type="link" icon={<TeamOutlined />} className="text-blue-500">
-            Students
-          </Button>
-          <Button type="link" icon={<CalendarOutlined />} className="text-blue-500">
-           Attendance
-          </Button>
+          {renderMenu}
         </Drawer>
-      <Content className=" p-4 bg-gray-100 min-h-screen flex justify-center items-center">
-  <Row justify="center" className="w-full">
-    <Col xs={24} sm={24} md={12} lg={8}>
-    <Card bordered={false} className="bg-blue-400 text-white text-left shadow-lg p-6">
-  {/* Card Heading */}
-  <Title level={3} className="text-center mb-4">
-    Student Profile
-  </Title>
+      )}
 
-  <div className="flex flex-col items-start">
-    {/* Progress Bar */}
-    <div className="w-full mb-4">
-      <Title level={4} className="text-white">Progress</Title>
-      <Progress percent={70} strokeColor="#ffffff" trailColor="#4b5563" />
-    </div>
+      <Layout>
+        <Header style={{ background: "#fff", padding: "0 20px" }}>
+          <Row justify="space-between" align="middle">
+            <Col>
+              {/* Hamburger Menu Button (Visible on Mobile) */}
+              {isMobile && (
+                <Button
+                  type="text"
+                  icon={<MenuOutlined />}
+                  onClick={toggleDrawer}
+                  style={{ fontSize: "20px" }}
+                />
+              )}
+            </Col>
+            <Col>
+              <Title level={3} style={{ margin: 0, fontSize: isMobile ? "18px" : "24px" }}>
+                Student Dashboard
+              </Title>
+            </Col>
+          </Row>
+        </Header>
+        <Content style={{ margin: isMobile ? "10px" : "20px" }}>
+          <div style={{ background: "#fff", padding: isMobile ? 12 : 24 }}>
+            {/* Overview Section */}
+            <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
+              <Col xs={24} sm={12} lg={8}>
+                <Card title="Enrolled Courses" bordered>
+                  3 courses
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} lg={8}>
+                <Card title="Upcoming Assignments" bordered>
+                  3 assignments
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} lg={8}>
+                <Card title="Notifications" bordered>
+                  2 notifications
+                </Card>
+              </Col>
+            </Row>
 
-    {/* Text Information */}
-    <Title level={5} className="mt-2">Student Name</Title>
-    <Title level={5}>Student ID</Title>
-    <Title level={5}>Enrollment No</Title>
-  </div>
+            {/* Analytics Section */}
+            <Row gutter={[16, 16]}>
+              <Col xs={24} sm={12}>
+                <Card title="Course Progress">
+                  <Progress percent={60} status="active" />
+                </Card>
+              </Col>
+              <Col xs={24} sm={12}>
+                <Card title="Average Grade">
+                  <Progress type="dashboard" percent={85} />
+                </Card>
+              </Col>
+            </Row>
 
-  {/* Profile Picture */}
-  <div className="mt-4 flex justify-center">
-    <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-800">
-      Profile Picture
-    </div>
-  </div>
-</Card>
-
-    </Col>
-  </Row>
-</Content>
-
-
+            {/* Notifications Section */}
+            <div style={{ marginTop: 20 }}>
+              <Title level={4} style={{ fontSize: isMobile ? "16px" : "20px" }}>
+                Recent Notifications
+              </Title>
+              <ul style={{ paddingLeft: isMobile ? "10px" : "20px" }}>
+                <li>Assignment 1 deadline extended</li>
+                <li>New course material uploaded</li>
+              </ul>
+            </div>
+          </div>
+        </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default StudentLayout;
+export default StudentPortal;
