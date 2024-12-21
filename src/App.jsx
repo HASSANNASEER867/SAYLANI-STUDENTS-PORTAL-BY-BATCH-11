@@ -1,19 +1,50 @@
-import { useState } from 'react';
-// import Button from './components/Button'; 
 import './App.css';
-// import Teacherlayout from './components/TeacherLayout';
+import Teacherlayout from './components/TeacherLayout';
 import StudentLayout from './components/StudentLayout'; 
+import { BrowserRouter, Route, Routes } from 'react-router';
+import AdminDashboard from './Admin/AdminDashboard';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Home from './components/Home';
+import Teacherlist from './components/Teacherlist';
+import AddTeacher from './components/AddTeacher';
+import Studentlist from './components/Studentlist';
+import Courselist from './components/Courselist';
+import CourseDetail from './components/CourseDetail';
+import Alerts from './components/Alerts';
+import { useState } from 'react';
+import AddCourseForm from './components/AddCourse';
 
 function App() {
+   
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)  
+  const OpenSidebar = () => {
+    setOpenSidebarToggle(!openSidebarToggle)
+  }
+
   return (
-    <>
-      <div>
-        {/* <Button /> */}
-      </div>
-      <StudentLayout/>
-      {/* TeacherLayout component is called here */}
-      {/* <Teacherlayout /> */}
-    </>
+    <BrowserRouter>
+  
+   {/* Developers Plzz Dont Change the code Lines ! */}
+   {/* Admin Pannal Header and Sidebar ↓ */}
+    {/* <Header OpenSidebar={OpenSidebar}/>
+    <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/> */}
+    <Routes>
+    <Route path='admindashboard' element={ <AdminDashboard/> } ></Route>
+    <Route path='/home' element={ <Home /> } ></Route>
+    <Route path='/header' element={ <Header/> } ></Route>
+    <Route path='/sidebar' element={ <Sidebar /> } ></Route>
+    <Route path='/teacherlist' element={ <Teacherlist /> } ></Route>
+    <Route path='/addteacher' element={ <AddTeacher /> } ></Route>
+    <Route path='/studentlist' element={ <Studentlist /> } ></Route>
+    <Route path='/courses' element={ <Courselist /> } ></Route>
+    <Route path='/coursedetail' element={ <CourseDetail /> } ></Route>
+    <Route path='/addcourse' element={ <AddCourseForm/> } ></Route>
+    <Route path='/alerts' element={ <Alerts/> } ></Route>
+    <Route path='/' element={ <Teacherlayout/> } ></Route>
+    <Route path='/studentlayout' element={ <StudentLayout/> } ></Route>
+    </Routes>
+    </BrowserRouter> 
   );
 }
 
