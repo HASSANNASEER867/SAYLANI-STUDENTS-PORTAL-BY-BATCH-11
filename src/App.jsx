@@ -30,7 +30,7 @@ function App() {
     {/* <Header OpenSidebar={OpenSidebar}/>
     <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/> */}
     <Routes>
-    <Route path='admindashboard' element={ <AdminDashboard/> } ></Route>
+    <Route path='/admindashboard' element={ <AdminDashboard/> } ></Route>
     <Route path='/home' element={ <Home /> } ></Route>
     <Route path='/header' element={ <Header/> } ></Route>
     <Route path='/sidebar' element={ <Sidebar /> } ></Route>
