@@ -21,7 +21,7 @@
 // import Button from './components/Button'; 
 import './App.css';
 // import Teacherlayout from './components/TeacherLayout';
-import StudentLayout from './components/Studentlayout'; 
+import Student from './components/Student'; 
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
       <div>
         {/* <Button /> */}
       </div>
-      <StudentLayout/>
+      <Student/>
       {/* TeacherLayout component is called here */}
       {/* <Teacherlayout /> */}
     </>

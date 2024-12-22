@@ -23,7 +23,7 @@ import {
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
-const StudentPortal = () => {
+const Student = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef(null);
@@ -162,5 +162,5 @@ const StudentPortal = () => {
   );
 };
 
-export default StudentPortal;
+export default Student;
 // aaqib
