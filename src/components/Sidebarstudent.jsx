@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const { Sider } = Layout;
 
-const Sidebar = ({ isMobile }) => {
+const Sidebarstudent = ({ isMobile }) => {
   const renderMenu = (
     <Menu theme="dark" mode="inline">
       <Menu.Item key="1" icon={<PieChartOutlined />}>
@@ -51,4 +51,4 @@ const Sidebar = ({ isMobile }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebarstudent;
