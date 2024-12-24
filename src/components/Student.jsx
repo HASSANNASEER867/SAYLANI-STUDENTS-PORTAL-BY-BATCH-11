@@ -1,166 +1,111 @@
-import React, { useState, useRef } from "react";
-import {
-  Layout,
-  Menu,
-  Card,
-  Row,
-  Col,
-  Button,
-  Table,
-  Typography,
-  Progress,
-  Drawer,
-} from "antd";
-import {
-  MenuOutlined,
-  PieChartOutlined,
-  FileTextOutlined,
-  TeamOutlined,
-  CalendarOutlined,
-  BellOutlined,
-} from "@ant-design/icons";
+
+
+import React, { useState } from "react";
+import { Layout, Menu, Button, Drawer } from "antd";
+import { PieChartOutlined, FileTextOutlined, TeamOutlined } from "@ant-design/icons";
+import Dashboard from './Dashboard';
+import Courses from './Courses';
+import Assignments from './Assignments';
+import Notifications from './Notifications';
+import Schedule from './Schedule';
 
 const { Header, Content, Sider } = Layout;
-const { Title } = Typography;
 
 const Student = () => {
+  const [currentPage, setCurrentPage] = useState("Dashboard");
   const [drawerVisible, setDrawerVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const menuRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Handle screen size changes
-  const updateScreenSize = () => {
-    setIsMobile(window.innerWidth < 768); // Mobile breakpoint
+  const handleMenuClick = (e) => {
+    setCurrentPage(e.key);
+    if (isMobile) {
+      setDrawerVisible(false); 
+    }
   };
 
-  React.useEffect(() => {
-    updateScreenSize(); // Check initial size
-    window.addEventListener("resize", updateScreenSize);
-    return () => window.removeEventListener("resize", updateScreenSize);
-  }, []);
-
-  // Toggle Drawer
   const toggleDrawer = () => {
     setDrawerVisible(!drawerVisible);
   };
 
-  // Render Sidebar Menu
-  const renderMenu = (
-    <Menu
-      ref={menuRef}
-      theme="dark"
-      mode="inline"
-      defaultSelectedKeys={["1"]}
-      items={[
-        { key: "1", icon: <PieChartOutlined />, label: "Dashboard" },
-        { key: "2", icon: <TeamOutlined />, label: "Courses" },
-        { key: "3", icon: <FileTextOutlined />, label: "Assignments" },
-        { key: "4", icon: <CalendarOutlined />, label: "Schedule" },
-        { key: "5", icon: <BellOutlined />, label: "Notifications" },
-      ]}
-    />
-  );
+  // Handle window resize for mobile/desktop responsiveness
+  window.addEventListener("resize", () => {
+    setIsMobile(window.innerWidth <= 768);
+  });
+
+  const menuItems = [
+    { key: "Dashboard", icon: <PieChartOutlined />, label: "Dashboard" },
+    { key: "Courses", icon: <FileTextOutlined />, label: "Courses" },
+    { key: "Schedule", icon: <FileTextOutlined />, label: "Schedule" },
+    { key: "Notifications", icon: <FileTextOutlined />, label: "Notifications" },
+    { key: "Assignments", icon: <TeamOutlined />, label: "Assignments" },
+  ];
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
       {/* Sidebar for Desktop */}
       {!isMobile && (
-        <Sider collapsible={false} theme="dark">
-          <div style={{ color: "white", padding: "20px", textAlign: "center" }}>
-            <Title level={4} style={{ color: "white" }}>
-              Student Portal
-            </Title>
-          </div>
-          {renderMenu}
+        <Sider width={200} theme="dark">
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["Dashboard"]}
+            onClick={handleMenuClick}
+            items={menuItems}
+          />
         </Sider>
       )}
 
-      {/* Drawer for Mobile */}
+      {/* Main Layout */}
+      <Layout>
+        <Header style={{ display: "flex", alignItems: "center", background: "#000", padding: "0 20px" }}>
+          {isMobile && (
+            <Button
+              type="primary"
+              onClick={toggleDrawer}
+              style={{
+                marginRight: "10px",
+                background: "#1890ff",
+                borderColor: "#1890ff",
+                fontWeight: "bold",
+              }}
+            >
+              ☰
+            </Button>
+          )}
+          <div className="text-white text-2xl font-bold flex-grow text-center">
+            Student Portal
+          </div>
+        </Header>
+
+        <Content style={{ padding: "0 20px", marginTop: "20px" }}>
+          {currentPage === "Dashboard" && <Dashboard />}
+          {currentPage === "Courses" && <Courses />}
+          {currentPage === "Assignments" && <Assignments />}
+          {currentPage === "Notifications" && <Notifications />}
+          {currentPage === "Schedule" && <Schedule />}
+        </Content>
+      </Layout>
+
+      {/* Mobile Drawer for Sidebar */}
       {isMobile && (
         <Drawer
           title="Menu"
           placement="left"
           closable
           onClose={toggleDrawer}
-          visible={drawerVisible}
           open={drawerVisible}
         >
-          {renderMenu}
+          <Menu
+            theme="dark"
+            mode="inline"
+            defaultSelectedKeys={["Dashboard"]}
+            onClick={handleMenuClick}
+            items={menuItems}
+          />
         </Drawer>
       )}
-
-      <Layout>
-        <Header style={{ background: "#fff", padding: "0 20px" }}>
-          <Row justify="space-between" align="middle">
-            <Col>
-              {/* Hamburger Menu Button (Visible on Mobile) */}
-              {isMobile && (
-                <Button
-                  type="text"
-                  icon={<MenuOutlined />}
-                  onClick={toggleDrawer}
-                  style={{ fontSize: "20px" }}
-                />
-              )}
-            </Col>
-            <Col>
-              <Title level={3} style={{ margin: 0, fontSize: isMobile ? "18px" : "24px" }}>
-                Student Dashboard
-              </Title>
-            </Col>
-          </Row>
-        </Header>
-        <Content style={{ margin: isMobile ? "10px" : "20px" }}>
-          <div style={{ background: "#fff", padding: isMobile ? 12 : 24 }}>
-            {/* Overview Section */}
-            <Row gutter={[16, 16]} style={{ marginBottom: 20 }}>
-              <Col xs={24} sm={12} lg={8}>
-                <Card title="Enrolled Courses" bordered>
-                  3 courses
-                </Card>
-              </Col>
-              <Col xs={24} sm={12} lg={8}>
-                <Card title="Upcoming Assignments" bordered>
-                  3 assignments
-                </Card>
-              </Col>
-              <Col xs={24} sm={12} lg={8}>
-                <Card title="Notifications" bordered>
-                  2 notifications
-                </Card>
-              </Col>
-            </Row>
-
-            {/* Analytics Section */}
-            <Row gutter={[16, 16]}>
-              <Col xs={24} sm={12}>
-                <Card title="Course Progress">
-                  <Progress percent={60} status="active" />
-                </Card>
-              </Col>
-              <Col xs={24} sm={12}>
-                <Card title="Average Grade">
-                  <Progress type="dashboard" percent={85} />
-                </Card>
-              </Col>
-            </Row>
-
-            {/* Notifications Section */}
-            <div style={{ marginTop: 20 }}>
-              <Title level={4} style={{ fontSize: isMobile ? "16px" : "20px" }}>
-                Recent Notifications
-              </Title>
-              <ul style={{ paddingLeft: isMobile ? "10px" : "20px" }}>
-                <li>Assignment 1 deadline extended</li>
-                <li>New course material uploaded</li>
-              </ul>
-            </div>
-          </div>
-        </Content>
-      </Layout>
     </Layout>
   );
 };
 
 export default Student;
-// aaqib
