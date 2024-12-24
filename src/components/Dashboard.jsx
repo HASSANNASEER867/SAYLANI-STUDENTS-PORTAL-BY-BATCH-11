@@ -9,7 +9,7 @@ const Dashboard = () => {
       <Row gutter={16}>
         {/* Dashboard Cards */}
         <Col span={8}>
-          <Card>
+        <Card style={{ backgroundColor: "#d6e4ff", borderColor: "#000000" }}>
             <Statistic
               title="Total Students"
               value={1128}
@@ -19,7 +19,7 @@ const Dashboard = () => {
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+        <Card style={{ backgroundColor: "#d6e4ff", borderColor: "#000000" }}>
             <Statistic
               title="Total Assignments"
               value={32}
@@ -29,7 +29,7 @@ const Dashboard = () => {
           </Card>
         </Col>
         <Col span={8}>
-          <Card>
+        <Card style={{ backgroundColor: "#d6e4ff", borderColor: "#000000" }}>
             <Statistic
               title="Courses Enrolled"
               value={5}
