@@ -57,7 +57,7 @@ const App = () => {
         <Route path="/notifications" element={<Notifications />} />
       </Routes>
     </Router>
-=======
+  )}
 import './App.css';
 import Teacherlayout from './components/TeacherLayout';
 import StudentLayout from './components/StudentLayout'; 
@@ -105,7 +105,7 @@ function App() {
     <Route path='/studentlayout' element={ <StudentLayout/> } ></Route>
     </Routes>
     </BrowserRouter> 
-main
+
   );
 };
 
