@@ -103,10 +103,33 @@ function App() {
     <Route path='/alerts' element={ <Alerts/> } ></Route>
     <Route path='/' element={ <Teacherlayout/> } ></Route>
     <Route path='/studentlayout' element={ <StudentLayout/> } ></Route>
+
     </Routes>
     </BrowserRouter> 
 
   );
 };
 
-export default App;
+import TeacherCard from './components/TeacherCard'
+import TeacherPlaceholder from './components/TeacherPlaceholder'
+import Header from './components/Header'
+import ChartPlaceholder from "./components/TeacherPlaceholder";
+import Card from "./components/TeacherCard";
+import Dashboard from "./components/TeacherDashboard";
+
+function APP(){
+return(
+  <BrowserRouter>
+  <Routes>
+  <Route  path='/teachercard' element={<Sidebar/>}/>
+    <Route  path='/teacherPlaceholder' element={<ChartPlaceholder/> }/>
+    <Route  path='/teacherHome' element={<Header/> }/>
+    <Route  path='/teachercard' element={<Card/> }/>
+    <Route  path='/teachercard' element={<Dashboard/> }/>
+
+  </Routes>
+  </BrowserRouter>
+)
+}
+
+export default APP;
