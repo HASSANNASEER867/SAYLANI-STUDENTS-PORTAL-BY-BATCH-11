@@ -1,85 +1,3 @@
- // import { useState } from 'react';
-// // import Button from './components/Button'; 
-// import './App.css';
-// // import Teacherlayout from './components/TeacherLayout';
-// import StudentLayout from './components/StudentLayout'; 
-
-// function App() {
-//   return (
-//     <>
-//       <div>
-//         {/* <Button /> */}
-//       </div>
-//       <StudentLayout/>
-//       {/* TeacherLayout component is called here */}
-//       {/* <Teacherlayout /> */}
-//     </>
-//   );
-// }
-
-// export default App;import { useState } from 'react';
-// import Button from './components/Button'; 
-// import './App.css';
-// // import Teacherlayout from './components/TeacherLayout';
-// import Student from './components/Student'; 
-
-// function App() {
-//   return (
-//     <>
-//       <div>
-//         {/* <Button /> */}
-//       </div>
-//       <Student/>
-//       {/* TeacherLayout component is called here */}
-//       {/* <Teacherlayout /> */}
-//     </>
-//   );
-// }
-
-// export default App;
-// import React from "react";
-// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import Student from "./components/Student";
-// import Courses from "./components/Courses";
-// import Assignments from "./components/Assignments";
-// import Schedule from "./components/Schedule";
-// import Notifications from "./components/Notifications";
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Student />} />
-//         <Route path="/courses" element={<Courses />} />
-//         <Route path="/assignments" element={<Assignments />} />
-//         <Route path="/schedule" element={<Schedule />} />
-//         <Route path="/notifications" element={<Notifications />} />
-//       </Routes>
-//     </Router>
-//   )}
-
-// import TeacherCard from './components/TeacherCard'
-// import TeacherPlaceholder from './components/TeacherPlaceholder'
-// import Header from './components/Header'
-// import ChartPlaceholder from "./components/TeacherPlaceholder";
-// import Card from "./components/TeacherCard";
-// import Dashboard from "./components/TeacherDashboard";
-
-// function APP(){
-// return(
-//   <BrowserRouter>
-//   <Routes>
-//   <Route  path='/teachercard' element={<Sidebar/>}/>
-//     <Route  path='/teacherPlaceholder' element={<ChartPlaceholder/> }/>
-//     <Route  path='/teacherHome' element={<Header/> }/>
-//     <Route  path='/teachercard' element={<Card/> }/>
-//     <Route  path='/teachercard' element={<Dashboard/> }/>
-
-//   </Routes>
-//   </BrowserRouter>
-// )
-// }
-
 import './App.css';
 import Teacherlayout from './components/TeacherLayout';
 import { BrowserRouter, Route, Routes } from 'react-router';
@@ -102,25 +20,24 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import MainHome from './components/MainHome';
 import StudentDetail from './components/StudentDetail';
+// import TeacherCard from './components/TeacherCard'
+// import TeacherPlaceholder from './components/TeacherPlaceholder'
+// import Header from './components/Header'
+// import ChartPlaceholder from "./components/TeacherPlaceholder";
+// import Notification from "./components/TeacherNotification";
+// import Dashboard from "./components/TeacherDashboard";
+
+
 
 function App() {
 
   return (
     <BrowserRouter>
-  
-   {/* Developers Plzz Dont Change the code Lines ! */}
-   {/* Admin Pannal Header and Sidebar ↓ */}
-     
-   {/* Developers Plzz Dont Change the code Lines ! */}
-   {/* Home Page added with Login SignUp Plus! */}
-    {/* <HeaderHome   OpenSidebar={OpenSidebar} /> */}
-    {/* <SidebarHome  openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} /> */}
     <Routes>
-    <Route path='/adminpannel' element={ <AdminDashboard/> } ></Route>
+    <Route path='/' element={ <AdminDashboard/> } ></Route>
     <Route path='/home' element={ <Home /> } ></Route>
     <Route path='/header' element={ <Header/> } ></Route>
     <Route path='/sidebar' element={ <Sidebar /> } ></Route>
-    <Route path='/teacherlist' element={ <Teacherlist /> } ></Route>
     <Route path='/teacherlist' element={ <Teacherlist /> } ></Route>
     <Route path='/addteacher' element={ <AddTeacher /> } ></Route>
     <Route path='/studentlist' element={ <Studentlist /> } ></Route>
@@ -131,43 +48,19 @@ function App() {
     <Route path='/alerts' element={ <Alerts/> } ></Route>
     <Route path='/teacherlayout' element={ <Teacherlayout/> } ></Route>
     <Route path='/student' element={ <Student/> } ></Route>
-    <Route path='/' element={ <MainHome/> } ></Route>
+    <Route path='/mainhome' element={ <MainHome/> } ></Route>
     <Route path='/headerhome' element={ <HeaderHome/> } ></Route>
     <Route path='/sidebarhome' element={ <SidebarHome/> } ></Route>
     <Route path='/login' element={ <Login/> } ></Route>
     <Route path='/signup' element={ <SignUp/> } ></Route>
-
+    {/* <Route  path='/teachercard' element={<Sidebar/>}/>
+    <Route  path='/teacherPlaceholder' element={<ChartPlaceholder/> }/>
+    <Route  path='/teacherHome' element={<Header/> }/>
+    <Route  path='/teachercard' element={<Notification/> }/>
+    <Route  path='/teachercard' element={<Dashboard/> }/> */}
     </Routes>
     </BrowserRouter> 
 
   );
 };
-
-<<<<<<< HEAD
-import TeacherCard from './components/TeacherCard'
-import TeacherPlaceholder from './components/TeacherPlaceholder'
-import Header from './components/Header'
-import ChartPlaceholder from "./components/TeacherPlaceholder";
-import Notification from "./components/TeacherNotification";
-import Dashboard from "./components/TeacherDashboard";
-
-function APP(){
-return(
-  <BrowserRouter>
-  <Routes>
-  <Route  path='/teachercard' element={<Sidebar/>}/>
-    <Route  path='/teacherPlaceholder' element={<ChartPlaceholder/> }/>
-    <Route  path='/teacherHome' element={<Header/> }/>
-    <Route  path='/teachercard' element={<Notification/> }/>
-    <Route  path='/teachercard' element={<Dashboard/> }/>
-
-  </Routes>
-  </BrowserRouter>
-)
-}
-
-export default APP;
-=======
-
 export default App
->>>>>>> 9331925dab1eecd24b67b1bf7559beabca827fb0
