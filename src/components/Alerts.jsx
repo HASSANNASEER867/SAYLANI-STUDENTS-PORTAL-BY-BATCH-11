@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import '../App.css';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 const Alert = () => {
   const [recipient, setRecipient] = useState('teachers');  // Default to 'teachers'
   const [message, setMessage] = useState('');
   const [notifications, setNotifications] = useState([]);
+
+   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)  
+      const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+      }
+  
 
   // Function to handle form submission and add notification
   const handleSubmit = (e) => {
@@ -25,6 +33,9 @@ const Alert = () => {
   };
 
   return (
+    <div className='alert-container-main-parent'>
+    <Header OpenSidebar={OpenSidebar}/>
+    <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
     <div className='alert-container-parent'>
       <div className='alert-container-second-parent'>
       <br /> <br /> <br /> <br /> <br />
@@ -71,7 +82,7 @@ const Alert = () => {
       </div>
     </div>
     </div>
-    </div>
+    </div></div>
   );
 };
 

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 const AddCourseForm = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +35,15 @@ const AddCourseForm = () => {
     console.log(formData);
   };
 
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)  
+      const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
+      }
+
   return (
+    <div>
+    <Header OpenSidebar={OpenSidebar}/>
+    <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
     <div className='add-container-parent'>
     <div className='add-container'>
       <br /><br />
@@ -222,7 +232,7 @@ const AddCourseForm = () => {
       </div>
     </form>
     </div>
-    </div>
+    </div></div>
 
   );
 };

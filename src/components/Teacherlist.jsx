@@ -1,6 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaCloudUploadAlt } from "react-icons/fa"; // You can use this for "Add New" button icon
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 const TeacherList = () => {
   const teachers = [
@@ -56,10 +58,23 @@ const TeacherList = () => {
     }
   ];
 
+  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)  
+    const OpenSidebar = () => {
+      setOpenSidebarToggle(!openSidebarToggle)
+    }
+
   return (
+    <div>
+    <Header OpenSidebar={OpenSidebar}/>
+    <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
     <div className='Teachers'>
+       <div className='addcource-btn-parent'>
+             <Link to='/addteacher' className='add-course'>Add New Teacher ↓</Link>
+               </div>  
+
+               
       <div className='table-parent'>
-        <br /><br />
+        <br /><br /><br /><br />
 
         {/* Table to display teacher data */}
         <table className='table-chart-teacher' border="1" cellPadding="5" style={{ marginTop: '20px' }}>
@@ -80,12 +95,8 @@ const TeacherList = () => {
             ))}
           </tbody>
         </table>
-
-        <div className='addteacher-btn-parent'>
-          <Link to='/addteacher' className='add-teacher'>Add New Teacher ⇪</Link>
-        </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
