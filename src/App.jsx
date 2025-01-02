@@ -114,7 +114,7 @@ import TeacherCard from './components/TeacherCard'
 import TeacherPlaceholder from './components/TeacherPlaceholder'
 import Header from './components/Header'
 import ChartPlaceholder from "./components/TeacherPlaceholder";
-import Card from "./components/TeacherCard";
+import Notification from "./components/TeacherNotification";
 import Dashboard from "./components/TeacherDashboard";
 
 function APP(){
@@ -124,7 +124,7 @@ return(
   <Route  path='/teachercard' element={<Sidebar/>}/>
     <Route  path='/teacherPlaceholder' element={<ChartPlaceholder/> }/>
     <Route  path='/teacherHome' element={<Header/> }/>
-    <Route  path='/teachercard' element={<Card/> }/>
+    <Route  path='/teachercard' element={<Notification/> }/>
     <Route  path='/teachercard' element={<Dashboard/> }/>
 
   </Routes>
