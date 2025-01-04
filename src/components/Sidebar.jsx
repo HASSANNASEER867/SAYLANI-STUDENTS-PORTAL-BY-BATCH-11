@@ -4,6 +4,7 @@ import
 {BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
   BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
  from 'react-icons/bs'
+ import { FaEye } from "react-icons/fa";
  import { MdDashboard } from 'react-icons/md';
 import { Link } from 'react-router';
 
@@ -19,7 +20,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
         <ul className='sidebar-list'>
             <li className='admin-sidebar-list-item'>
-                <Link to='/' className='flex gap-3'>
+                <Link to='/' className='flex gap-4'>
                     <BsGrid1X2Fill className='icon'/> Dashboard
                 </Link>
             </li>
@@ -40,11 +41,10 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </Link>
             </li>
             <li className='admin-sidebar-list-item'>
-                <Link to='/alert' href="" className='flex gap-3'>
+                <Link to='/alerts' href="" className='flex gap-3'>
                     <BsPeopleFill className='icon'/> Alerts
                 </Link> 
             </li>
-            
             
         </ul>
     </aside>

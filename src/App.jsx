@@ -34,7 +34,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-    <Route path='/' element={ <AdminDashboard/> } ></Route>
+    <Route path='/admindashboard' element={ <AdminDashboard/> } ></Route>
     <Route path='/home' element={ <Home /> } ></Route>
     <Route path='/header' element={ <Header/> } ></Route>
     <Route path='/sidebar' element={ <Sidebar /> } ></Route>
@@ -48,7 +48,7 @@ function App() {
     <Route path='/alerts' element={ <Alerts/> } ></Route>
     <Route path='/teacherlayout' element={ <Teacherlayout/> } ></Route>
     <Route path='/student' element={ <Student/> } ></Route>
-    <Route path='/mainhome' element={ <MainHome/> } ></Route>
+    <Route path='/' element={ <MainHome/> } ></Route>
     <Route path='/headerhome' element={ <HeaderHome/> } ></Route>
     <Route path='/sidebarhome' element={ <SidebarHome/> } ></Route>
     <Route path='/login' element={ <Login/> } ></Route>
